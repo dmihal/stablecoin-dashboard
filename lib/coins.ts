@@ -1,18 +1,3 @@
-function _formatInteger(int: number) {
-  return Math.floor(int)
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-
-function _formatMoney(amount: number, denom = "", decPlaces = 2) {
-  const dec = amount % 1;
-  return (
-    denom +
-    _formatInteger(amount) +
-    (decPlaces > 0 ? dec.toFixed(decPlaces).slice(1) : "")
-  );
-}
-
 function _calculateAvgDev(numbers: number[], _mean?: number) {
   const mean = _mean ? _mean : numbers.reduce((a, b) => a + b, 0) / numbers.length;
   return Math.sqrt(
