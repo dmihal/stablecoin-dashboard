@@ -44,15 +44,15 @@ function _formatMoney(amount, denom = "", decPlaces = 2) {
 function Tag({ type }) {
   switch (type) {
     case CoinType.Centralized:
-      return <span class="tag tag-centralized">centralized</span>;
+      return <span className="tag tag-centralized">centralized</span>;
     case CoinType.Decentralized:
-      return <span class="tag tag-decentralized">decentralized</span>;
+      return <span className="tag tag-decentralized">decentralized</span>;
     case CoinType.Mixed:
-      return <span class="tag tag-mixed">mixed</span>;
+      return <span className="tag tag-mixed">mixed</span>;
     case CoinType.Algorithmic:
-      return <span class="tag tag-algorithmic">algorithmic</span>;
+      return <span className="tag tag-algorithmic">algorithmic</span>;
     case CoinType.Unknown:
-      return <span class="tag tag-unknown">unknown</span>;
+      return <span className="tag tag-unknown">unknown</span>;
   }
 }
 
@@ -161,7 +161,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
         <link
           href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Roboto&display=swap"
           rel="stylesheet"
@@ -170,17 +170,17 @@ export default function Home() {
 
       {percentage > 0 && (
         <div id="overlayContainer">
-          <div id="progress" class="progress w-100">
+          <div id="progress" className="progress w-100">
             <div
               id="progressBar"
-              class="progress-bar progress-bar-striped progress-bar-animated fs-3"
+              className="progress-bar progress-bar-striped progress-bar-animated fs-3"
               role="progressbar"
               style={{ width: `${percentage}%` }}
             ></div>
           </div>
           <div
             id="overlayErrorMsg"
-            class="text-center text-danger fs-5 pt-3 pb-3 px-2 mt-3 bg-light d-none"
+            className="text-center text-danger fs-5 pt-3 pb-3 px-2 mt-3 bg-light d-none"
           >
             If you request price data too frequently, CoinGecko may temporarily ban your IP
             address. Wait a minute and try again.
@@ -188,23 +188,23 @@ export default function Home() {
         </div>
       )}
 
-      <div class="container mb-3">
-        <div class="title fs-1 me-3">Stablecoin Dashboard</div>
+      <div className="container mb-3">
+        <div className="title fs-1 me-3">Stablecoin Dashboard</div>
       </div>
 
-      <div class="container mb-3">
-        <div role="group" class="btn-group">
-          <button type="button" class="btn btn-outline-primary" id="1d" onClick={periodListener(1)}>24h</button>
-          <button type="button" class="btn btn-outline-primary" id="7d" onClick={periodListener(7)}>7d</button>
-          <button type="button" class="btn btn-outline-primary" id="14d" onClick={periodListener(14)}>14d</button>
-          <button type="button" class="btn btn-outline-primary" id="30d" onClick={periodListener(30)}>30d</button>
-          <button type="button" class="btn btn-outline-primary" id="90d" onClick={periodListener(90)}>90d</button>
-          <button type="button" class="btn btn-outline-primary" id="180d" onClick={periodListener(180)}>180d</button>
-          <button type="button" class="btn btn-outline-primary" id="365d" onClick={periodListener(365)}>1y</button>
+      <div className="container mb-3">
+        <div role="group" className="btn-group">
+          <button type="button" className="btn btn-outline-primary" id="1d" onClick={periodListener(1)}>24h</button>
+          <button type="button" className="btn btn-outline-primary" id="7d" onClick={periodListener(7)}>7d</button>
+          <button type="button" className="btn btn-outline-primary" id="14d" onClick={periodListener(14)}>14d</button>
+          <button type="button" className="btn btn-outline-primary" id="30d" onClick={periodListener(30)}>30d</button>
+          <button type="button" className="btn btn-outline-primary" id="90d" onClick={periodListener(90)}>90d</button>
+          <button type="button" className="btn btn-outline-primary" id="180d" onClick={periodListener(180)}>180d</button>
+          <button type="button" className="btn btn-outline-primary" id="365d" onClick={periodListener(365)}>1y</button>
         </div>
       </div>
-      <div class="container mb-3">
-        <table class="table table-hover">
+      <div className="container mb-3">
+        <table className="table table-hover">
           <thead>
             <tr>
               <th scope="col">asset</th>
@@ -219,10 +219,10 @@ export default function Home() {
           <tbody id="tbody">
             {COINS.map(coin => {
               return (
-                <tr class="align-middle">
+                <tr className="align-middle" key={coin.name}>
                   <td>
-                    <div class="d-flex align-items-center">
-                      {coin.icon ? <img class="icon me-3" src={coin.icon} /> : ""}
+                    <div className="d-flex align-items-center">
+                      {coin.icon ? <img className="icon me-3" src={coin.icon} /> : ""}
                       {coin.name}
                     </div>
                   </td>
@@ -231,12 +231,12 @@ export default function Home() {
                   </td>
                   <td>{coin.currentMarketCap ? _formatMoney(coin.currentMarketCap, "", 0) : "?"}</td>
                   <td>${coin.currentPrice ? coin.currentPrice.toPrecision(3) : "?"}</td>
-                  <td class={
+                  <td className={
                     coin.avgDev && coin.avgDev <= 0.005 * coin.targetPrice ? "text-success" : ""
                   }>
                     {coin.avgDev ? coin.avgDev.toPrecision(3) : "?"}
                   </td>
-                  <td class={
+                  <td className={
                     coin.maxDev && coin.maxDev < 0.015 * coin.targetPrice ? "text-success" : ""
                   }>
                     {coin.maxDev ? coin.maxDev.toPrecision(3) : "?"}
